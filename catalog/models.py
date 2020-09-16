@@ -14,108 +14,6 @@ class Proveedor(models.Model):
     def __str__(self):
         return self.nombre
 
-class Modalidad(models.Model):
-    Senderismo = 'Senderismo'
-    Trekking = 'Trekking'
-    Montanismo = 'Montañismo'
-    Alpinismo = 'Alpinismo'
-    Ciclismo = 'Ciclismo'
-    MODALIDAD_CHOICES = [
-        (Senderismo, 'Senderismo'),
-        (Trekking, 'Trekking'),
-        (Montanismo, 'Montañismo'),
-        (Alpinismo, 'Alpinismo'),
-        (Ciclismo, 'Ciclismo'),
-    ]
-    modalidad = models.CharField(max_length=15,
-                                 choices=MODALIDAD_CHOICES,
-                                 default=Senderismo,
-                                 )
-
-class Tematica(models.Model):
-    GEOGRAFICA = 'GEO'
-    BIOLOGICA = 'BIO'
-    CULTURAL = 'CUL'
-    GEN = 'GEN'
-    EXP = 'EXP'
-    TEMATICA_CHOICES = [
-        (GEOGRAFICA, 'Geografica'),
-        (BIOLOGICA, 'Biologica'),
-        (CULTURAL, 'Cultural'),
-        (GEN, 'Gen'),
-        (EXP, 'Exp'),
-    ]
-    tematica = models.CharField(max_length=10,
-                                choices=TEMATICA_CHOICES,
-                                default=GEOGRAFICA,
-                                )
-
-class Medio(models.Model):
-    Tierra = 'Tierra'
-    Agua = 'Agua'
-    Aire = 'Aire'
-    MEDIO_CHOICES = [
-        (Tierra, 'Tierra'),
-        (Agua, 'Agua'),
-        (Aire, 'Aire'),
-    ]
-    medio = models.CharField(max_length=10,
-                             choices=MEDIO_CHOICES,
-                             default=Tierra,
-                             )
-
-class Nivel(models.Model):
-    Alto = 'Alto'
-    Medio = 'Medio'
-    Bajo = 'Bajo'
-    NIVEL_CHOICES = [
-        (Alto, 'Alto'),
-        (Medio, 'Medio'),
-        (Bajo, 'Bajo'),
-    ]
-    nivel = models.CharField(max_length=10,
-                             choices=NIVEL_CHOICES,
-                             default=Alto,
-                             )
-
-class Tipo(models.Model):
-    Viaje = 'Viaje'
-    Excursion = 'Excursion'
-    TIPO_CHOICES = [
-        (Viaje, 'Viaje'),
-        (Excursion, 'Excursion'),
-    ]
-    tipo = models.CharField(max_length=15,
-                            choices=TIPO_CHOICES,
-                            default=Viaje,
-                            )
-
-class Ambito(models.Model):
-    Regional = 'Regional'
-    Nacional = 'Nacional'
-    Comarcal = 'Comarcal'
-    AMBITO_CHOICES = [
-        (Regional, 'Regional'),
-        (Nacional, 'Nacional'),
-        (Comarcal, 'Comarcal'),
-    ]
-    ambito = models.CharField(max_length=10,
-                              choices=AMBITO_CHOICES,
-                              default=Regional,
-                              )
-
-class Geometria(models.Model):
-    Circular = 'Circular'
-    Lineal = 'Lineal'
-    GEOMETRIA_CHOICES = [
-        (Circular, 'Circular'),
-        (Lineal, 'Lineal'),
-    ]
-    geometria = models.CharField(max_length=10,
-                                 choices=GEOMETRIA_CHOICES,
-                                 default=Circular,
-                                 )
-
 class Actividad(models.Model):
     """Modelo que representa las actividades"""
     id = models.AutoField(primary_key=True)
@@ -128,15 +26,63 @@ class Actividad(models.Model):
     lugar = models.CharField(max_length=20)
     puntoPartida = models.CharField(max_length=50)
     horaPartida = models.DateTimeField()
-    proveedor = models.ForeignKey()
+    proveedor = models.ForeignKey('Proveedor', on_delete=models.CASCADE,)
     plazas = models.IntegerField()
-    geometria = models.ForeignKey()
-    tipo = models.ForeignKey()
-    medio = models.ForeignKey()
-    modalidad = models.ForeignKey()
-    ambito = models.ForeignKey()
-    tematica = models.ForeignKey()
-    nivel = models.ForeignKey()
+
+    GEOMETRIA = (
+        ('Circular', 'Circular'),
+        ('Lineal', 'Lineal'),
+    )
+
+    geometria = models.CharField(max_length=15, choices=GEOMETRIA, default='Circular')
+
+    TIPO = (
+        ('Viaje', 'Viaje'),
+        ('Excursion', 'Excursion'),
+    )
+
+    tipo = models.CharField(max_length=15, choices=TIPO, default='Viaje')
+
+    MEDIO = (
+        ('Tierra', 'Tierra'),
+        ('Aire', 'Aire'),
+        ('Agua', 'Agua'),
+    )
+
+    medio = models.CharField(max_length=10, choices=MEDIO, default='Tierra')
+
+    MODALIDAD = (
+        ('Senderismo', 'Senderismo'),
+        ('Trekking', 'Trekking'),
+        ('Montañismo', 'Montañismo'),
+        ('Alpinismo', 'Alpinismo'),
+        ('Ciclismo', 'Ciclismo'),
+    )
+
+    modalidad = models.CharField(max_length=15, choices=MODALIDAD, default='Senderismo')
+
+    AMBITO = (
+        ('Regional', 'Regional'),
+        ('Comarcal', 'Comarcal'),
+        ('Nacional', 'Nacional'),
+    )
+    ambito = models.CharField(max_length=15, choices=AMBITO, default='Regional')
+
+    TEMATICA = (
+        ('GEO', 'Geográfica'),
+        ('BIO', 'Biológica'),
+        ('CUL', 'Cultural'),
+        ('GEN', 'GEN'),
+        ('EXP', 'EXP'),
+    )
+
+    tematica = models.CharField(max_length=3, choices=TEMATICA, default='GEO')
+    NIVEL = (
+        ('Alto', 'Alto'),
+        ('Medio', 'Medio'),
+        ('Bajo', 'Bajo'),
+    )
+    nivel = models.CharField(max_length=10, choices=NIVEL, default='Alto')
 
     class Meta:
         constraints = [
@@ -155,7 +101,7 @@ class Guia(models.Model):
     fechaNacimiento = models.DateField(help_text="Format: <em>DD/MM/YYYY</em>.")
     sexo = models.CharField(max_length=1)
     telefono = models.CharField(max_length=9, unique=True)
-    correo = models.EmailField(unique=True, unique=True)
+    correo = models.EmailField(unique=True)
     password = models.CharField(max_length=24, unique=True)
 
     def __str__(self):
