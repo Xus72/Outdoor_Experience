@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.urls import reverse
+
 class Proveedor(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=20)
@@ -13,6 +15,7 @@ class Proveedor(models.Model):
 
     def __str__(self):
         return self.nombre
+
 
 class Actividad(models.Model):
     """Modelo que representa las actividades"""
@@ -84,14 +87,17 @@ class Actividad(models.Model):
     )
     nivel = models.CharField(max_length=10, choices=NIVEL, default='Alto')
 
+    def __str__(self):
+        return self.titulo
+
+    def get_absolute_url(self):
+        return reverse('actividades-detalles', args=[str(self.id)])
+
     class Meta:
         constraints = [
             models.CheckConstraint(check=models.Q(precio__gte=0), name='precio_gte_0'),
             models.CheckConstraint(check=models.Q(plazas__gte=0), name='plazas_gte_0'),
         ]
-
-        def __str__(self):
-            return self.titulo
 
 class Guia(models.Model):
     id = models.AutoField(primary_key=True)
