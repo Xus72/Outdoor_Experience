@@ -13,7 +13,7 @@ def index(request):
 
 class Actividades(generic.ListView):
     model = Actividad
-    paginate_by = 1
+    paginate_by = 10
 
 class Guias(generic.ListView):
     model = Guia
