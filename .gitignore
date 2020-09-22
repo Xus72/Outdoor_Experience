@@ -1,2 +1,4 @@
 #Files
 outdoor_experience/settings.py
+catalog/migrations/
+catalog/__pycache__/
