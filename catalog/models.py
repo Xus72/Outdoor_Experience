@@ -31,7 +31,7 @@ class Actividad(models.Model):
     fechaRecogida = models.DateField(help_text="Format: <em>DD/MM/YYYY</em>.")
     lugar = models.CharField(max_length=20)
     puntoPartida = models.CharField(max_length=50)
-    horaPartida = models.DateTimeField()
+    horaPartida = models.TimeField()
     proveedor = models.ForeignKey('Proveedor', on_delete=models.CASCADE,)
     plazas = models.IntegerField()
 
@@ -40,14 +40,14 @@ class Actividad(models.Model):
         ('Lineal', 'Lineal'),
     )
 
-    geometria = models.CharField(max_length=15, choices=GEOMETRIA, default='Circular')
+    geometria = models.CharField(max_length=15, choices=GEOMETRIA)
 
     TIPO = (
         ('Viaje', 'Viaje'),
         ('Excursion', 'Excursion'),
     )
 
-    tipo = models.CharField(max_length=15, choices=TIPO, default='Viaje')
+    tipo = models.CharField(max_length=15, choices=TIPO)
 
     MEDIO = (
         ('Tierra', 'Tierra'),
@@ -55,7 +55,7 @@ class Actividad(models.Model):
         ('Agua', 'Agua'),
     )
 
-    medio = models.CharField(max_length=10, choices=MEDIO, default='Tierra')
+    medio = models.CharField(max_length=10, choices=MEDIO)
 
     MODALIDAD = (
         ('Senderismo', 'Senderismo'),
@@ -65,14 +65,14 @@ class Actividad(models.Model):
         ('Ciclismo', 'Ciclismo'),
     )
 
-    modalidad = models.CharField(max_length=15, choices=MODALIDAD, default='Senderismo')
+    modalidad = models.CharField(max_length=15, choices=MODALIDAD)
 
     AMBITO = (
         ('Regional', 'Regional'),
         ('Comarcal', 'Comarcal'),
         ('Nacional', 'Nacional'),
     )
-    ambito = models.CharField(max_length=15, choices=AMBITO, default='Regional')
+    ambito = models.CharField(max_length=15, choices=AMBITO)
 
     TEMATICA = (
         ('GEO', 'Geográfica'),
@@ -82,13 +82,13 @@ class Actividad(models.Model):
         ('EXP', 'EXP'),
     )
 
-    tematica = models.CharField(max_length=3, choices=TEMATICA, default='GEO')
+    tematica = models.CharField(max_length=3, choices=TEMATICA)
     NIVEL = (
         ('Alto', 'Alto'),
         ('Medio', 'Medio'),
         ('Bajo', 'Bajo'),
     )
-    nivel = models.CharField(max_length=10, choices=NIVEL, default='Alto')
+    nivel = models.CharField(max_length=10, choices=NIVEL)
 
     def __str__(self):
         return self.titulo
