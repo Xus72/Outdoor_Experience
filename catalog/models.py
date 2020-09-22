@@ -83,12 +83,13 @@ class Actividad(models.Model):
     )
 
     tematica = models.CharField(max_length=3, choices=TEMATICA)
+
     NIVEL = (
-        ('Alto', 'Alto'),
-        ('Medio', 'Medio'),
-        ('Bajo', 'Bajo'),
+        ('A', 'Alto'),
+        ('M', 'Medio'),
+        ('B', 'Bajo'),
     )
-    nivel = models.CharField(max_length=10, choices=NIVEL)
+    nivel = models.CharField(max_length=1, choices=NIVEL)
 
     def __str__(self):
         return self.titulo
@@ -111,10 +112,16 @@ class Guia(models.Model):
     apellidos = models.CharField(max_length=20)
     dni = models.CharField(max_length=9, unique=True)
     fechaNacimiento = models.DateField(help_text="Format: <em>DD/MM/YYYY</em>.")
-    sexo = models.CharField(max_length=1)
+
+    SEXO = (
+        ('H', 'Hombre'),
+        ('M', 'Mujer'),
+    )
+
+    sexo = models.CharField(max_length=1, choices=SEXO, default='M')
     telefono = models.CharField(max_length=9, unique=True)
     correo = models.EmailField(unique=True)
-    password = models.CharField(max_length=24, unique=True)
+    password = models.CharField(max_length=24)
 
     def __str__(self):
         return '%s, %s' % (self.nombre, self.apellidos)
@@ -131,10 +138,19 @@ class Participante(models.Model):
     municipio = models.CharField(max_length=20)
     provincia = models.CharField(max_length=20)
     codPostal = models.IntegerField(max_length=5)
+
+    SEXO = (
+        ('H', 'Hombre'),
+        ('M', 'Mujer'),
+    )
+    sexo = models.CharField(max_length=1, choices=SEXO)
     telefono = models.IntegerField(max_length=9)
     correo = models.EmailField(unique=True)
     nacionalidad = models.CharField(max_length=20)
-    password = models.CharField(max_length=24, unique=True)
+    password = models.CharField(max_length=24)
 
     def __str__(self):
         return '%s, %s' % (self.nombre, self.apellidos)
+
+    def get_absolute_url(self):
+        return reverse('participantes-detalles', args=[str(self.id)])
