@@ -34,3 +34,8 @@ urlpatterns += [
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+"""url sitio autenticación"""
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]

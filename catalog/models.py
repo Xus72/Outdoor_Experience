@@ -16,6 +16,9 @@ class Proveedor(models.Model):
     def __str__(self):
         return self.nombre
 
+    class Meta:
+        permissions = (("add_prov", "Añadir proveedor"),("edit_prov", "Editar proveedor"), ("rem_prov", "Eliminar proveedor"),)
+
 
 class Actividad(models.Model):
     """Modelo que representa las actividades"""
@@ -98,6 +101,9 @@ class Actividad(models.Model):
             models.CheckConstraint(check=models.Q(precio__gte=0), name='precio_gte_0'),
             models.CheckConstraint(check=models.Q(plazas__gte=0), name='plazas_gte_0'),
         ]
+
+        permissions = (("add_activ", "Añadir actividad"), ("edit_activ", "Editar actividad"), ("rem_activ", "Eliminar actividad"),)
+
 
 class Guia(models.Model):
     id = models.AutoField(primary_key=True)
