@@ -1,0 +1,17 @@
+{% extends "base_generica.html" %}
+
+{% block title %}
+<title>Registrarse</title>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table class="form_participante">
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Registrarse"/>
+    </form>
+</section>
+{% endblock %}

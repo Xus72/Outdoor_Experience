@@ -1,0 +1,33 @@
+{% extends "base_generica.html" %}
+
+{% block title %}
+<title>Actividades</title>
+{% endblock %}
+
+{% block content %}
+{% if actividad_list %}
+    <section class="content">
+        <span class="num_actividades">{{ num_actividades }}</span>
+        <div class="grid-container">
+            {% for actividad in actividad_list %}
+            <article class="actividad">
+                <div id="item" class="item">
+                    <div id="img" class="img">
+                        <img src="" alt="img-actividad">
+                    </div>
+                    <div class="datos-item">
+                        <p class="titulo">{{actividad.titulo}}</p>
+                        <p class="precio">{{actividad.precio}}€</p>
+                        <p class="fechaSalida">{{actividad.fechaSalida}}</p>
+                        <p class="lugar">{{actividad.lugar}}</p>
+                        <p class="nivel">{{actividad.nivel}}</p>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+{% else %}
+<p>No existe ninguna actividad registrada</p>
+{% endif %}
+{% endblock %}

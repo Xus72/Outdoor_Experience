@@ -1,0 +1,15 @@
+{% extends "base_generica.html" %}
+
+{% block title %}
+<title>Guias - {{guia.nombre}}</title>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <section class="guia">
+        <div class="nombre"><span>{{guia.nombre}}</span></div>
+        <div class="apellidos"><span>{{guia.apellidos}}</span></div>
+        <div class="fecha-nacimiento"><span>{{guia.fechaNacimiento}}</span></div>
+    </section>
+</section>
+{% endblock %}

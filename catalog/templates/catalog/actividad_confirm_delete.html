@@ -1,0 +1,12 @@
+{% extends "base_generica.html" %}
+
+{% block content%}
+<section class="content">
+    <h1>Borrar Actividad</h1>
+    <p>¿Estás seguro que quieres eliminar la actividad {{ actividad }}?</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" action="" value="Si"/>
+    </form>
+</section>
+{% endblock%}

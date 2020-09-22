@@ -1,0 +1,21 @@
+{% extends "base_generica.html" %}
+
+{% block title %}
+<title>Actividad - {{actividad.titulo}}</title>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <section class="actividad">
+        <div class="header-actividad">
+            <div class="titulo"><span><h2>{{actividad.titulo}}</h2></span></div>
+            <div class="fecha-salida"><span><h2>{{actividad.fechaSalida}}</h2></span></div>
+        </div>
+        <div class="body-actividad">
+            <div class="modalidad"><span>{{actividad.modalidad}}</span></div>
+            <div class="nivel"><span>{{actividad.nivel}}</span></div>
+            <div class="descripcion"><span>{{actividad.descripcion}}</span></div>
+        </div>
+    </section>
+</section>
+{% endblock %}

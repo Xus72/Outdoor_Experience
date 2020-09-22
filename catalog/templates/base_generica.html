@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- Añadir CSS adicional en fichero estático -->
+        {% load static %}       
+        {% block css %}<link rel="stylesheet" href="{% static 'css/style.css' %}">{% endblock %}
+        {% block title %}<title></title>{% endblock %}
+    </head>
+    <body>
+        {% block sidebar %}
+        <section class="banner">
+            <header class="header" id="header">
+                <a class="logo" href="">
+                    <img src="" alt="logo">
+                </a>
+                <nav class="navbar">
+                    <div class="container">
+                        <span class="icon_navigation">
+                            <i class="fa fa-reorder"></i>
+                        </span>
+                        <ul class="nav">
+                            <li><a id="letras" class="letras" href="{% url 'index' %}">Index</a></li>
+                            <li><a id="letras" class="letras" href="{% url 'actividades' %}">Actividades</a></li>
+                            <li><a id="letras" class="letras" href="{% url 'guias' %}">Guias</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a id="letras" class="letras" href="">{{ user.get_username }}</a></li>
+                            <li><a id="letras" class="letras" href="{% url 'logout' %}?next={{request.path}}">Logout</a></li>
+                            {% else %}
+                            <li><a id="letras" class="letras" href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+        </section>
+        {% endblock %}
+        {% block content %}<!-- insert content-->{% endblock %}
+        {% block pagination %}
+        {% if is_paginated %}
+            <div class="paginacion">
+                <span class="pagina">
+                    {% if page_obj.has_previous %}
+                        <a href="{{request.path }}?page={{page_obj.previous_page_number}}">Pag. anterior</a>
+                    {% endif %}
+                    <span class="pagina actual">Pág. {{page_obj.number}} de {{page_obj.paginator.num_pages</span>
+                    {% if page_obj.has_next %}
+                        <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Pag. siguiente</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
+        {% endblock %}
+        {% block footer %}
+        <section class=foot>
+            <footer class="footer">
+                <div class="about-us col-3">
+                    <ul>
+                        <h1>Sobre nosotros</h1>
+                        <p> Somos una empresa dedicada a realizar actividades al aire libre en Andalucia</p>
+                        <h1></h1>
+                        <p>Tlf</p>
+                        <p>Email:</p>
+                    </ul>
+                </div>
+                <div class="enlaces-interes col-3">
+                    <ul>
+                        <h1>Enlaces de interés</h1>
+                        <li><a href="{% url 'index' %}">Index</a></li>
+                        <li><a href="{% url 'actividades' %}">Actividades</a></li>
+                        <li><a href="{% url 'guias' %}">Guias</a></li>
+                    </ul>
+                </div>
+                <div class="redes-sociales col-3">
+                    <ul>
+                        <h1>Siguenos</h1>
+                        <a class="instagram" href="">
+                            <img src="" alt="instagram">
+                        </a>
+                        <a class="facebook" href="">
+                            <img src="" alt="facebook">
+                        </a>
+                        <a class="twitter" href="">
+                            <img src="" alt="twitter">
+                        </a>
+                    </ul>
+                </div>
+            </footer>
+        </section>
+        {% endblock %}
+    </body>
+</html>

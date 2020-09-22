@@ -1,0 +1,273 @@
+*{
+    box-sizing: inherit;
+}
+
+body{
+    font-family: "Poppins", sans-serif;
+    margin: 0em;
+    padding: 0em;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #777777;
+    height: 100%;
+}
+
+.nav li a{
+    color: #222222;
+}
+
+.nav input[type="submit"]{
+    color: black;
+}
+.content{
+    margin-bottom: 2.5em;
+    padding-top: 3.5em;
+}
+
+header{
+    padding: 1em;
+    width: 100%;
+    position: fixed;
+    transition: 0.5s;
+    background-color: transparent;
+    z-index: 2;
+}
+
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.logo{
+    margin-left: 2em;
+}
+
+.navbar{
+    float: right;
+    margin-right: 5em;
+}
+
+.nav li{
+    display: inline;
+}
+
+.nav li a{
+    color: black;
+    padding: 2em;
+    font-size: 600;
+    font-weight: bold;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+p{
+    margin: 0;
+    padding: 0;
+}
+
+.footer{
+    height: 40vh;
+    background-color: #222222;
+    padding-top: 6em;
+}
+
+.footer h1{
+    color: white;
+}
+
+.footer section{
+    height: 40vh;
+}
+
+.footer a{
+    color: white;
+}
+
+.col-3{
+    float: left;
+    width: 33,33%;
+    padding-left: 8em;
+}
+
+slider{
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+}
+
+.slides{
+    display: none;
+}
+
+.text-slide{
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+.fade{
+    animation-name: fade;
+    animation-duration: 1.5;
+}
+
+@keyframes fade{
+    from {opacity: 0.4;}
+    to {opacity: 1;}
+}
+
+.guias div:nth-child(1){
+    background: blue;
+    color: white;
+}
+
+.description{
+    height: 75vh;
+    background-color: white;
+}
+
+.description div{
+    height: 75vh;
+    background-color: white;
+}
+
+.description div h1{
+    margin: 0;
+    padding-top: 6em;
+    padding-bottom: 1.5em;
+    text-align: center;
+    font-size: 2em;
+    text-transform: uppercase;
+    color: black
+}
+
+.description div p{
+    margin: 0;
+    text-align: center;
+    padding-left: 4em;
+    padding-right: 4em;
+    font-size: 1.25em;
+    color: black;
+}
+
+.row{
+    display: flex;
+}
+
+.col-2{
+    flex: 50%;
+}
+
+.guias{
+    height: 100vh;
+}
+
+.guias div{
+    height: 100vh;
+}
+
+.guias div h1{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 75vh;
+    font-size: 5em;
+    text-transform: uppercase;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 0.5em;
+    padding-top: 1em;
+    padding-left: 17em;
+}
+
+.item{
+    padding: relative;
+    width: 350px;
+    height: 300px;
+    border: 1px solid #c0c0c0;
+    border-radius: 4px;
+}
+
+.item img{
+    position: relative;
+    width: 350px;
+    height: 250px;
+}
+
+.datos-item{
+    text-align: center;
+}
+
+.datos-item p{
+    display: inline;
+    color: black;
+    padding: 0.25em;
+}
+
+.actividad{
+    color: black;
+    margin: 2em;
+}
+
+.guia{
+    position: relative;
+    height: 100px;
+    width: 100px;
+    border-radius: 4em;
+    align-items: center;
+    margin: 2em;
+}
+
+.guia span{
+    color: black;
+    font-weight: bold;
+}
+
+.grid-container-guias{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 0.5em;
+    padding-top: 4em;
+    padding-left: 4em;
+}
+
+form{
+    padding: 0.5em;
+    margin-left: 5em;
+}
+
+
+input[type="submit"]{
+    background-color: ghostwhite;
+    border-radius: 0.5em;
+    padding: 0.25em;
+    color: black;
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+.form-login{
+    margin-left: 30%;
+    margin-top: 5em;
+}
+
+.password-reset{
+    margin-left: 5em;
+    margin-top: 0.5em;
+}
+
+label{
+    display: inline-block;
+    color: black;
+}
