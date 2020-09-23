@@ -90,6 +90,7 @@ class Actividad(models.Model):
         ('B', 'Bajo'),
     )
     nivel = models.CharField(max_length=1, choices=NIVEL)
+    imagen = models.ImageField(upload_to='catalog/static/images', blank=True)
 
     def __str__(self):
         return self.titulo
