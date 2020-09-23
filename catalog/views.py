@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import permission_required
 
 from .models import Proveedor, Actividad, Guia, Participante
 
@@ -27,27 +29,30 @@ class ActividadesDetailView(generic.DetailView):
 class GuiasDetailView(generic.DetailView):
     model = Guia
 
-class ActividadCreate(CreateView):
+class ActividadCreate(PermissionRequiredMixin, CreateView):
     model = Actividad
     fields = '__all__'
+    permission_required = 'catalog.add_activ'
 
-class ActividadUpdate(UpdateView):
+class ActividadUpdate(PermissionRequiredMixin, UpdateView):
     model = Actividad
     fields = '__all__'
+    permission_required = 'catalog.edit_activ'
 
-class ActividadDelete(DeleteView):
+class ActividadDelete(PermissionRequiredMixin, DeleteView):
     model = Actividad
     success_url = reverse_lazy('actividades')
+    permission_required = 'catalog.rem_activ'
 
-class GuiaUpdate(UpdateView):
+class GuiaUpdate(PermissionRequiredMixin, UpdateView):
     model = Guia
-    fields = ['telefono', 'correo', 'password']
+    fields = ['telefono', 'correo', 'password', 'avatar']
 
 
-class ParticipanteCreate(CreateView):
+class ParticipanteCreate(PermissionRequiredMixin, CreateView):
     model = Participante
     fields = '__all__'
 
-class ParticipanteUpdate(UpdateView):
+class ParticipanteUpdate(PermissionRequiredMixin, UpdateView):
     model = Participante
-    fields = ['municipio', 'provincia', 'codPostal', 'telefono', 'correo', 'password']
+    fields = ['municipio', 'provincia', 'codPostal', 'telefono', 'correo', 'password', 'avatar']

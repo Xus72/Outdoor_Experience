@@ -7,13 +7,15 @@
 {% block content %}
 {% if actividad_list %}
     <section class="content">
-        <span class="num_actividades">{{ num_actividades }}</span>
+        {% if perms.catalog.add_activ %}
+            <a href="{% url 'actividad_crear' %}">Crear actividad</a>
+        {% endif %}
         <div class="grid-container">
             {% for actividad in actividad_list %}
             <article class="actividad">
                 <div id="item" class="item">
                     <div id="img" class="img">
-                        <a href="{{ actividad.get_absolute_url }}">img-actividad</a>
+                        <a href="{{ actividad.get_absolute_url }}"><img src="{{ actividad.imagen }}"></a>
                     </div>
                     <div class="datos-item">
                         <p class="titulo">{{actividad.titulo}}</p>
@@ -22,6 +24,12 @@
                         <p class="lugar">{{actividad.lugar}}</p>
                         <p class="nivel">{{actividad.nivel}}</p>
                     </div>
+                    {% if perms.catalog.edit_activ and perms.catalog.rem_activ %}
+                        <div class="opciones">
+                            <a href="{{ actividad.get_absolute_url}}/update">Editar</a>
+                            <a href="{{ actividad.get_absolute_url}}/delete">Eliminar</a>
+                        </div>
+                    {% endif %}
                 </div>
             </article>
             {% endfor %}
