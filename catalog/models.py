@@ -90,7 +90,7 @@ class Actividad(models.Model):
         ('B', 'Bajo'),
     )
     nivel = models.CharField(max_length=1, choices=NIVEL)
-    imagen = models.ImageField(upload_to='catalog/static/images', blank=True)
+    imagen = models.ImageField(upload_to='images', blank=True)
 
     def __str__(self):
         return self.titulo
@@ -123,7 +123,7 @@ class Guia(models.Model):
     telefono = models.CharField(max_length=9, unique=True)
     correo = models.EmailField(unique=True)
     password = models.CharField(max_length=24)
-    avatar = models.ImageField(upload_to='catalog/static/images/avatar', blank=True)
+    avatar = models.ImageField(upload_to='images/avatar', blank=True)
 
     def __str__(self):
         return '%s, %s' % (self.nombre, self.apellidos)
@@ -150,7 +150,7 @@ class Participante(models.Model):
     correo = models.EmailField(unique=True)
     nacionalidad = models.CharField(max_length=20)
     password = models.CharField(max_length=24)
-    vatar = models.ImageField(upload_to='catalog/static/images/avatar', blank=True)
+    vatar = models.ImageField(upload_to='images/avatar', blank=True)
 
     def __str__(self):
         return '%s, %s' % (self.nombre, self.apellidos)

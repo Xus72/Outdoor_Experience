@@ -15,7 +15,7 @@
             <article class="actividad">
                 <div id="item" class="item">
                     <div id="img" class="img">
-                        <a href="{{ actividad.get_absolute_url }}"><img src="{{ actividad.imagen }}"></a>
+                        <a href="{{ actividad.get_absolute_url }}"><img src="{{ actividad.imagen.url }}"></a>
                     </div>
                     <div class="datos-item">
                         <p class="titulo">{{actividad.titulo}}</p>
