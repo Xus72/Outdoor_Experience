@@ -86,8 +86,8 @@ class Actividad(models.Model):
 
     NIVEL = (
         ('A', 'Alto'),
-        ('M', 'Medio'),
-        ('B', 'Bajo'),
+        ('B', 'Medio'),
+        ('C', 'Bajo'),
     )
     nivel = models.CharField(max_length=1, choices=NIVEL)
     imagen = models.ImageField(upload_to='images', blank=True)
@@ -150,7 +150,7 @@ class Participante(models.Model):
     correo = models.EmailField(unique=True)
     nacionalidad = models.CharField(max_length=20)
     password = models.CharField(max_length=24)
-    vatar = models.ImageField(upload_to='images/avatar', blank=True)
+    avatar = models.ImageField(upload_to='images/avatar', blank=True)
 
     def __str__(self):
         return '%s, %s' % (self.nombre, self.apellidos)

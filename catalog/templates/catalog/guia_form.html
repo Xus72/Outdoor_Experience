@@ -6,7 +6,7 @@
 
 {% block content %}
 <section class="content">
-    <form action="" method="POST">
+    <form action="" method="POST", enctype="multipart/form-data">
         {% csrf_token %}
         <table class="form_guia">
             {{ form.as_table }}
