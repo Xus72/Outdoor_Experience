@@ -2,3 +2,5 @@
 outdoor_experience/settings.py
 catalog/migrations/
 catalog/__pycache__/
+catalog/static/media/
+outdoor_experience/__pycache__/

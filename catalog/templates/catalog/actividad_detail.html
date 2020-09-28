@@ -9,13 +9,21 @@
     <section class="actividad">
         <div class="header-actividad">
             <div class="titulo"><span><h2>{{actividad.titulo}}</h2></span></div>
-            <div class="fecha-salida"><span><h2>{{actividad.fechaSalida}}</h2></span></div>
+            <div class="fechaSalida"><span><h2>{{actividad.fechaSalida}}</h2></span></div>
+            <div class="fechaRecogida"><span><h2>{{ actividad.fechaRecogida }}</h2></span></div>
+            <div class="duracion"><span><h2>Duración: {{ actividad.duracion }}</h2></span></div>
+            <div class="precio"><span><h2>{{ actividad.precio }}€</h2></span></div>
         </div>
         <div class="body-actividad">
-            <div class="modalidad"><span>{{actividad.modalidad}}</span></div>
+            {% if actividad.modalidad == 'Senderismo' %}
+            <div class="modalidad"><img src="/media/images/modalidad_icon/senderismo.jpg"></div>
+            {% else %}
+            <div class="modalidad"><img src="/media/images/modalidad_icon/ciclismo.png"></div>
+            {% endif %}
             <div class="nivel"><span>{{actividad.nivel}}</span></div>
-            <div class="descripcion"><span>{{actividad.descripcion}}</span></div>
+            <div class="img"><img src="{{ actividad.imagen.url }}" alt="{{ actividad.titulo }}"></div>
         </div>
+        <div class="descripcion"><p>{{actividad.descripcion}}</p></div>
     </section>
 </section>
 {% endblock %}

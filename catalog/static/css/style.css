@@ -188,7 +188,7 @@ slider{
     grid-template-columns: auto auto auto;
     grid-gap: 0.5em;
     padding-top: 1em;
-    padding-left: 17em;
+    padding-left: 8em;
 }
 
 .item{
@@ -213,11 +213,6 @@ slider{
     display: inline;
     color: black;
     padding: 0.25em;
-}
-
-.actividad{
-    color: black;
-    margin: 2em;
 }
 
 .guia{
@@ -270,4 +265,57 @@ input[type="submit"]{
 label{
     display: inline-block;
     color: black;
+}
+
+.actividad{
+    color: black;
+    margin-top: 3em;
+    margin-left: 10%;
+}
+
+.header-actividad{
+    display: flex;
+    margin-bottom: 3em;
+}
+
+.header-actividad .fechaSalida{
+    display: flex;
+    margin-left: 10%;
+}
+
+.header-actividad .fechaRecogida{
+    display: block;
+    margin-left: 2em;
+}
+
+.header-actividad .duracion{
+    margin-left: 3em;
+}
+
+.header-actividad .precio{
+    margin-left: 3em;
+}
+
+.body-actividad{
+    display: flex;
+}
+
+.body-actividad .modalidad img{
+    height: 50px;
+    width: 50px;
+}
+
+.body-actividad .nivel{
+    display: block;
+}
+
+.body-actividad img{
+    display: flex;
+    margin-left: 50%;
+    height: 350px;
+    width: 500px;
+}
+
+.body-actividad .descripcion{
+    margin-top: 5em;
 }
