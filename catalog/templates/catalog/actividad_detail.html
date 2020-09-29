@@ -16,11 +16,17 @@
         </div>
         <div class="body-actividad">
             {% if actividad.modalidad == 'Senderismo' %}
-            <div class="modalidad"><img src="/media/images/modalidad_icon/senderismo.jpg"></div>
+            <div class="modalidad"><img src="/media/images/icons/senderismo.jpg"></div>
             {% else %}
-            <div class="modalidad"><img src="/media/images/modalidad_icon/ciclismo.png"></div>
+            <div class="modalidad"><img src="/media/images/icons/ciclismo.png"></div>
             {% endif %}
-            <div class="nivel"><span>{{actividad.nivel}}</span></div>
+            {% if actividad.nivel == 'A' %}
+            <div class="nivel"><img src="/media/images/icons/a.png"></div>
+            {% elif actividad.nivel == 'B' %}
+            <div class="nivel"><img src="/media/images/icons/b.png"></div>
+            {% else %}
+            <div class="nivel"><img src="/media/images/icons/b.png" alt="c"></div>
+            {% endif %}
             <div class="img"><img src="{{ actividad.imagen.url }}" alt="{{ actividad.titulo }}"></div>
         </div>
         <div class="descripcion"><p>{{actividad.descripcion}}</p></div>

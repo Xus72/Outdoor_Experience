@@ -227,14 +227,20 @@ slider{
 .guia span{
     color: black;
     font-weight: bold;
+    font-size: 18px;
+    margin-left: 2em;
 }
 
 .grid-container-guias{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto;
     grid-gap: 0.5em;
     padding-top: 4em;
     padding-left: 4em;
+}
+
+.img-guia img{
+    border-radius: 5em;
 }
 
 form{
@@ -301,8 +307,8 @@ label{
 }
 
 .body-actividad .modalidad img{
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
 }
 
 .body-actividad .nivel{
@@ -311,11 +317,17 @@ label{
 
 .body-actividad img{
     display: flex;
-    margin-left: 50%;
+    margin-left: 40%;
     height: 350px;
     width: 500px;
 }
 
 .body-actividad .descripcion{
     margin-top: 5em;
+}
+
+.body-actividad .nivel img{
+    margin-left: 4em;
+    height: 50px;
+    width: 50px;
 }
