@@ -8,11 +8,11 @@
 <section class="content">
     <section class="actividad">
         <div class="header-actividad">
-            <div class="titulo"><span><h2>{{actividad.titulo}}</h2></span></div>
-            <div class="fechaSalida"><span><h2>{{actividad.fechaSalida}}</h2></span></div>
-            <div class="fechaRecogida"><span><h2>{{ actividad.fechaRecogida }}</h2></span></div>
-            <div class="duracion"><span><h2>Duración: {{ actividad.duracion }}</h2></span></div>
-            <div class="precio"><span><h2>{{ actividad.precio }}€</h2></span></div>
+            <div class="titulo"><span><h2>{{ actividad.titulo }}</h2></span></div>
+            <div class="fechaSalida"><span><h2>{{ actividad.fechaSalida|date:"d/m/Y" }}</h2></span></div>
+            <div class="fechaRecogida"><span><h2>{{ actividad.fechaRecogida|date:"d/m/Y" }}</h2></span></div>
+            <div class="duracion"><span><h2>Duración: {{ actividad.mostrar_duracion }}</h2></span></div>
+            <div class="precio"><span><h2>{{ actividad.precio|floatformat:"2" }}€</h2></span></div>
         </div>
         <div class="body-actividad">
             {% if actividad.modalidad == 'Senderismo' %}

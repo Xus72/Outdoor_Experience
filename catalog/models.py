@@ -1,6 +1,6 @@
 from django.db import models
-
 from django.urls import reverse
+import datetime
 
 class Proveedor(models.Model):
     id = models.AutoField(primary_key=True)
@@ -26,9 +26,9 @@ class Actividad(models.Model):
     titulo = models.CharField(max_length=50, unique=True)
     descripcion = models.TextField(max_length=200, blank=True)
     precio = models.FloatField()
-    duracion = models.DurationField()
     fechaSalida = models.DateField(help_text="Format: <em>DD/MM/YYYY</em>.")
     fechaRecogida = models.DateField(help_text="Format: <em>DD/MM/YYYY</em>.")
+    duracion = models.CharField(max_length=10)
     lugar = models.CharField(max_length=20)
     puntoPartida = models.CharField(max_length=50)
     horaPartida = models.TimeField()
@@ -97,6 +97,18 @@ class Actividad(models.Model):
 
     def get_absolute_url(self):
         return reverse('actividades-detalles', args=[str(self.id)])
+
+    def mostrar_duracion(self):
+        diferencia = self.fechaRecogida - self.fechaSalida
+        return "{} dias".format(diferencia.days)
+
+    intervalos = (
+        ('semanas', 604800),  # 60 * 60 * 24 * 7
+        ('dias', 86400),    # 60 * 60 * 24
+        ('horas', 3600),    # 60 * 60
+        ('minutos', 60),
+        ('segundos', 1),
+        )
 
     class Meta:
         constraints = [

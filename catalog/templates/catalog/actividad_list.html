@@ -19,8 +19,8 @@
                     </div>
                     <div class="datos-item">
                         <p class="titulo">{{actividad.titulo}}</p>
-                        <p class="precio">{{actividad.precio}}€</p>
-                        <p class="fechaSalida">{{actividad.fechaSalida}}</p>
+                        <p class="precio">{{ actividad.precio|floatformat:"2" }}€</p>
+                        <p class="fechaSalida">{{ actividad.fechaSalida|date:"d/m/Y" }}</p>
                         <p class="lugar">{{actividad.lugar}}</p>
                         <p class="nivel">{{actividad.nivel}}</p>
                     </div>

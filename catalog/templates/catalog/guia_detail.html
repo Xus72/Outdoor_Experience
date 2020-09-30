@@ -9,7 +9,7 @@
     <section class="guia">
         <div class="nombre"><span>{{guia.nombre}}</span></div>
         <div class="apellidos"><span>{{guia.apellidos}}</span></div>
-        <div class="fecha-nacimiento"><span>{{guia.fechaNacimiento}}</span></div>
+        <div class="fecha-nacimiento"><span>{{guia.fechaNacimiento|date:"d/m/Y"}}</span></div>
     </section>
 </section>
 {% endblock %}
