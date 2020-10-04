@@ -249,7 +249,6 @@ form{
     margin-left: 5em;
 }
 
-
 input[type="submit"]{
     background-color: ghostwhite;
     border-radius: 0.5em;
@@ -331,4 +330,39 @@ label{
     margin-left: 4em;
     height: 50px;
     width: 50px;
+}
+
+.body-actividad .puntoPartida{
+    position: absolute;
+    margin-top: 5em;
+}
+
+.body-actividad .puntoPartida p{
+    text-transform: uppercase;
+    font-size: 400;
+    color: #5c5c5c;
+    font-weight: bold;
+}
+
+.body-actividad .horaPartida{
+    position: relative;
+    margin-top: 6.75em;
+    right: 45%;
+}
+
+.body-actividad .guias{
+    position: absolute;
+    margin-top: 10em;
+}
+
+.body-actividad .guias p{
+    text-transform: uppercase;
+    font-size: 400;
+    color: #555555;
+    font-weight: bold;
+}
+
+.body-actividad .guias span{
+    color: black;
+    font-weight: bold;
 }

@@ -28,6 +28,14 @@
             <div class="nivel"><img src="/media/images/icons/b.png" alt="c"></div>
             {% endif %}
             <div class="img"><img src="{{ actividad.imagen.url }}" alt="{{ actividad.titulo }}"></div>
+            <div class="puntoPartida">
+                <p>Punto encuentro</p>
+                <span><h3>{{ actividad.puntoPartida }}</h3></span></div>
+            <div class="horaPartida"><span><h3> {{ actividad.horaPartida|time:"H:i" }}h</h3></span></div>
+            <div class="guias">
+                <p>Guias:</p>
+                <span>{{ actividad.guia.nombre }} {{ actividad.guia.apellidos }}</span>
+            </div>
         </div>
         <div class="descripcion"><p>{{actividad.descripcion}}</p></div>
     </section>

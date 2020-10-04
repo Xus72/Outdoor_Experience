@@ -91,6 +91,7 @@ class Actividad(models.Model):
     )
     nivel = models.CharField(max_length=1, choices=NIVEL)
     imagen = models.ImageField(upload_to='images', blank=True)
+    guia = models.ForeignKey('Guia', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.titulo
@@ -101,14 +102,6 @@ class Actividad(models.Model):
     def mostrar_duracion(self):
         diferencia = self.fechaRecogida - self.fechaSalida
         return "{} dias".format(diferencia.days)
-
-    intervalos = (
-        ('semanas', 604800),  # 60 * 60 * 24 * 7
-        ('dias', 86400),    # 60 * 60 * 24
-        ('horas', 3600),    # 60 * 60
-        ('minutos', 60),
-        ('segundos', 1),
-        )
 
     class Meta:
         constraints = [
@@ -135,13 +128,16 @@ class Guia(models.Model):
     telefono = models.CharField(max_length=9, unique=True)
     correo = models.EmailField(unique=True)
     password = models.CharField(max_length=24)
-    avatar = models.ImageField(upload_to='images/avatar', blank=True)
+    avatar = models.ImageField(upload_to='images/avatar', blank=True, default='images/avatar/no_image.png')
 
     def __str__(self):
         return '%s, %s' % (self.nombre, self.apellidos)
 
     def get_absolute_url(self):
         return reverse('guias-detalles', args=[str(self.id)])
+
+    class Meta:
+        permissions = (("edit_guia", "Editar guia"),)
 
 class Participante(models.Model):
     id = models.AutoField(primary_key=True)
@@ -162,7 +158,7 @@ class Participante(models.Model):
     correo = models.EmailField(unique=True)
     nacionalidad = models.CharField(max_length=20)
     password = models.CharField(max_length=24)
-    avatar = models.ImageField(upload_to='images/avatar', blank=True)
+    avatar = models.ImageField(upload_to='images/avatar', blank=True, default='images/avatar/no_image.png')
 
     def __str__(self):
         return '%s, %s' % (self.nombre, self.apellidos)
