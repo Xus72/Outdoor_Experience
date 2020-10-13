@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required
 
-from .models import Proveedor, Actividad, Guia, Participante
+from .models import Proveedor, Actividad, Guia, Usuario
 
 def index(request):
     #Contador de actividades
@@ -49,10 +49,10 @@ class GuiaUpdate(PermissionRequiredMixin, UpdateView):
     fields = ['telefono', 'correo', 'password', 'avatar']
 
 
-class ParticipanteCreate(PermissionRequiredMixin, CreateView):
-    model = Participante
+class UsuarioCreate(PermissionRequiredMixin, CreateView):
+    model = Usuario
     fields = '__all__'
 
-class ParticipanteUpdate(PermissionRequiredMixin, UpdateView):
-    model = Participante
+class UsuarioUpdate(PermissionRequiredMixin, UpdateView):
+    model = Usuario
     fields = ['municipio', 'provincia', 'codPostal', 'telefono', 'correo', 'password', 'avatar']

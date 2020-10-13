@@ -13,6 +13,6 @@ urlpatterns = [
     url(r'^actividad/(?P<pk>\d+)/update/$', views.ActividadUpdate.as_view(), name='actividad_editar'),
     url(r'^actividad/(?P<pk>\d+)/delete/$', views.ActividadDelete.as_view(), name='actividad_eliminar'),
     url(r'^guia/(?P<pk>\d+)/update/$', views.GuiaUpdate.as_view(), name='guia_editar'),
-    url(r'^participante/create/$', views.ParticipanteCreate.as_view(), name='participante_crear'),
-    url(r'^participante/(?P<pk>\d+)/update/$', views.ParticipanteUpdate.as_view(), name='participante_editar'),
+    url(r'^usuario/create/$', views.UsuarioCreate.as_view(), name='usuario_crear'),
+    url(r'^usuario/(?P<pk>\d+)/update/$', views.UsuarioUpdate.as_view(), name='usuario_editar'),
 ]

@@ -1,6 +1,9 @@
 from django.db import models
 from django.urls import reverse
 import datetime
+from django.db.models import F, Q
+from django.db.models.functions import Now
+import uuid
 
 class Proveedor(models.Model):
     id = models.AutoField(primary_key=True)
@@ -26,8 +29,8 @@ class Actividad(models.Model):
     titulo = models.CharField(max_length=50, unique=True)
     descripcion = models.TextField(max_length=200, blank=True)
     precio = models.FloatField()
-    fechaSalida = models.DateField(help_text="Format: <em>DD/MM/YYYY</em>.")
-    fechaRecogida = models.DateField(help_text="Format: <em>DD/MM/YYYY</em>.")
+    fechaSalida = models.DateField()
+    fechaRecogida = models.DateField()
     duracion = models.CharField(max_length=10)
     lugar = models.CharField(max_length=20)
     puntoPartida = models.CharField(max_length=50)
@@ -91,7 +94,7 @@ class Actividad(models.Model):
     )
     nivel = models.CharField(max_length=1, choices=NIVEL)
     imagen = models.ImageField(upload_to='images', blank=True)
-    guia = models.ForeignKey('Guia', on_delete=models.CASCADE)
+    guia = models.ForeignKey('Guia', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.titulo
@@ -103,21 +106,26 @@ class Actividad(models.Model):
         diferencia = self.fechaRecogida - self.fechaSalida
         return "{} dias".format(diferencia.days)
 
+
     class Meta:
         constraints = [
             models.CheckConstraint(check=models.Q(precio__gte=0), name='precio_gte_0'),
-            models.CheckConstraint(check=models.Q(plazas__gte=0), name='plazas_gte_0'),
+            models.CheckConstraint(check=models.Q(plazas__gt=0), name='plazas_gt_0'),
+            #models.CheckConstraint(check=models.Q(fechaSalida__lte=F('fechaRecogida'), fechaSalida__gte=Now()), name='fechaSalida_correcta'),
+            #models.CheckConstraint(check=models.Q(fechaRecogida__gte=F('fechaSalida')), name='fechaRecogida_correcta'),
+            models.CheckConstraint(check=models.Q(duracion__gte=0), name='duracion_gte_0'),
         ]
 
         permissions = (("add_activ", "Añadir actividad"), ("edit_activ", "Editar actividad"), ("rem_activ", "Eliminar actividad"),)
 
+        ordering = ['fechaSalida']
 
 class Guia(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=20)
     apellidos = models.CharField(max_length=20)
     dni = models.CharField(max_length=9, unique=True)
-    fechaNacimiento = models.DateField(help_text="Format: <em>DD/MM/YYYY</em>.")
+    fechaNacimiento = models.DateField()
 
     SEXO = (
         ('H', 'Hombre'),
@@ -138,8 +146,9 @@ class Guia(models.Model):
 
     class Meta:
         permissions = (("edit_guia", "Editar guia"),)
+        
 
-class Participante(models.Model):
+class Usuario(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=20)
     apellidos = models.CharField(max_length=20)
@@ -164,4 +173,9 @@ class Participante(models.Model):
         return '%s, %s' % (self.nombre, self.apellidos)
 
     def get_absolute_url(self):
-        return reverse('participantes-detalles', args=[str(self.id)])
+        return reverse('usuario-detalles', args=[str(self.id)])
+
+class ParticipantesActividad(models.Model):
+    user = models.ForeignKey('Usuario', related_name="Participantes", on_delete=models.CASCADE)
+    actividad = models.ForeignKey('Actividad', on_delete=models.CASCADE)
+

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Proveedor, Actividad, Guia, Participante
+from .models import Proveedor, Actividad, Guia, Usuario
 
 class ProveedorAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'tipoEntidad','localidad')
@@ -19,8 +19,8 @@ class GuiaAdmin(admin.ModelAdmin):
 
 admin.site.register(Guia,GuiaAdmin)
 
-class ParticipanteAdmin(admin.ModelAdmin):
+class UsuarioAdmin(admin.ModelAdmin):
     list_display = ('nombre','apellidos', 'fechaNacimiento', 'municipio', 'provincia', 'nacionalidad')
     list_filter = ['municipio', 'provincia', 'nacionalidad']
 
-admin.site.register(Participante,ParticipanteAdmin)
+admin.site.register(Usuario,UsuarioAdmin)
